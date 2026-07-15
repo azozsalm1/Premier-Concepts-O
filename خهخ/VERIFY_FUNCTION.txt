@@ -1,0 +1,6 @@
+After deployment, open this URL after replacing YOUR-SITE:
+
+https://YOUR-SITE.netlify.app/api/property-lookup?address=17186%20Santa%20Catherine%2C%20Fountain%20Valley%2C%20CA%2092708
+
+Expected: JSON beginning with {"property":...}
+If you see the app HTML page, the netlify/functions folder was not uploaded or the new netlify.toml was not deployed.

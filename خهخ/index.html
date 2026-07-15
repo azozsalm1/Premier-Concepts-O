@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Premier Concepts OS — All-in-One v1.1</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0f2740" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">PC</div><div><b>Premier Concepts</b><small>All-in-One Flip OS</small></div></div>
+    <button data-view="projects" class="nav active">Projects Hub</button>
+    <button data-view="setup" class="nav">Property Setup</button>
+    <button data-view="deal" class="nav">Deal Analyzer</button>
+    <button data-view="rehab" class="nav">Rehab Builder</button>
+    <button data-view="materials" class="nav">Materials & Vendors</button>
+    <button data-view="finance" class="nav">Financing</button>
+    <button data-view="operations" class="nav">Project Operations</button>
+    <button data-view="contractors" class="nav">Contractors</button>
+    <button data-view="permits" class="nav">Permits & Inspections</button>
+    <button data-view="crm" class="nav">CRM</button>
+    <button data-view="reports" class="nav">Reports & Backup</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h1 id="pageTitle">Projects Hub</h1><p id="projectLabel">No project selected</p></div>
+      <div class="top-actions">
+        <button class="btn light" id="saveBtn">Save</button>
+        <button class="btn primary" id="newProjectBtn">+ New Project</button>
+      </div>
+    </header>
+
+    <section id="projects" class="view active">
+      <div class="toolbar">
+        <input id="projectSearch" placeholder="Search project or address" />
+        <select id="projectStatusFilter">
+          <option value="">All Statuses</option>
+          <option>Lead</option><option>Analyzing</option><option>Offer Sent</option>
+          <option>Under Contract</option><option>Construction</option><option>Listed</option><option>Sold</option>
+        </select>
+      </div>
+      <div id="projectCards" class="cards"></div>
+    </section>
+
+    <section id="setup" class="view">
+      <div class="card">
+        <div class="section-head"><div><h2>Property Setup</h2><p>Enter the full address and fetch available public record data.</p></div>
+        <button class="btn primary" id="lookupBtn">Get Property Details</button></div>
+        <div id="lookupMessage"></div>
+        <div class="form-grid">
+          <label>Project Name<input data-field="name"></label>
+          <label>Status<select data-field="status"><option>Lead</option><option>Analyzing</option><option>Offer Sent</option><option>Under Contract</option><option>Construction</option><option>Listed</option><option>Sold</option></select></label>
+          <label class="wide">Address<input data-field="address"></label>
+          <label>City<input data-field="city"></label>
+          <label>State<input data-field="state"></label>
+          <label>ZIP<input data-field="zip"></label>
+          <label>Bedrooms<input type="number" data-field="beds"></label>
+          <label>Bathrooms<input type="number" step=".5" data-field="baths"></label>
+          <label>Living Area<input type="number" data-field="sqft"></label>
+          <label>Lot Size<input type="number" data-field="lotSize"></label>
+          <label>Year Built<input type="number" data-field="yearBuilt"></label>
+          <label>Property Type<input data-field="propertyType"></label>
+          <label>APN<input data-field="apn"></label>
+          <label>Purchase Price<input type="number" data-field="purchase"></label>
+          <label>ARV / Sale Price<input type="number" data-field="arv"></label>
+          <label>Holding Months<input type="number" data-field="months"></label>
+        </div>
+      </div>
+    </section>
+
+    <section id="deal" class="view">
+      <div id="dealKpis" class="kpis"></div>
+      <div class="card"><h2>Offer Range</h2><div id="offerRange"></div></div>
+      <div class="card"><h2>Visible Formula Breakdown</h2><div id="dealBreakdown"></div></div>
+    </section>
+
+    <section id="rehab" class="view">
+      <div class="toolbar"><button class="btn light" id="addCategoryBtn">+ Add Category</button><button class="btn light" id="resetRehabBtn">Reset Template</button></div>
+      <div id="rehabCategories"></div>
+    </section>
+
+    <section id="materials" class="view">
+      <div class="toolbar">
+        <input id="materialSearch" placeholder="Search material, vendor or SKU" />
+        <button class="btn light" id="addMaterialBtn">+ Add Material</button>
+        <button class="btn light" id="addVendorBtn">+ Add Vendor</button>
+      </div>
+      <div class="card"><div id="materialsTable"></div></div>
+      <div class="card"><h2>Vendor Companies</h2><div id="vendorsTable"></div></div>
+    </section>
+
+    <section id="finance" class="view">
+      <div class="card">
+        <h2>Financing Settings</h2>
+        <div class="form-grid">
+          <label>Purchase LTV %<input type="number" step=".1" data-setting="purchaseLtv"></label>
+          <label>Rehab Funded %<input type="number" step=".1" data-setting="rehabFundingPct"></label>
+          <label>Interest %<input type="number" step=".1" data-setting="interestPct"></label>
+          <label>Points %<input type="number" step=".1" data-setting="pointsPct"></label>
+          <label>Lender Fees<input type="number" data-setting="lenderFees"></label>
+          <label>Monthly Holding<input type="number" data-setting="monthlyHolding"></label>
+          <label>Buying Closing %<input type="number" step=".1" data-setting="buyClosingPct"></label>
+          <label>Selling Cost %<input type="number" step=".1" data-setting="sellingPct"></label>
+          <label>Wholesale Fee<input type="number" data-setting="wholesaleFee"></label>
+          <label>Contingency %<input type="number" step=".1" data-setting="contingencyPct"></label>
+          <label>Minimum Profit<input type="number" data-setting="minProfit"></label>
+        </div>
+      </div>
+      <div class="card"><h2>Financing Breakdown</h2><div id="financeTable"></div></div>
+    </section>
+
+    <section id="operations" class="view">
+      <div class="subtabs">
+        <button class="sub active" data-op="invoices">Invoices</button>
+        <button class="sub" data-op="changes">Change Orders</button>
+        <button class="sub" data-op="logs">Daily Logs</button>
+        <button class="sub" data-op="tasks">Timeline & Tasks</button>
+        <button class="sub" data-op="punch">Punch List</button>
+      </div>
+      <div id="operationsContent"></div>
+    </section>
+
+    <section id="contractors" class="view"><div class="toolbar"><button class="btn light" id="addContractorBtn">+ Add Contractor</button></div><div class="card" id="contractorsTable"></div></section>
+    <section id="permits" class="view"><div class="toolbar"><button class="btn light" id="addPermitBtn">+ Add Permit / Inspection</button></div><div class="card" id="permitsTable"></div></section>
+    <section id="crm" class="view"><div class="toolbar"><button class="btn light" id="addContactBtn">+ Add Contact</button></div><div class="card" id="crmTable"></div></section>
+
+    <section id="reports" class="view">
+      <div class="card">
+        <h2>Reports & Backup</h2>
+        <div class="toolbar">
+          <button class="btn primary" id="printBtn">Print / Save PDF</button>
+          <button class="btn light" id="exportBtn">Export Backup</button>
+          <label class="btn light file-label">Import Backup<input id="importFile" type="file" accept=".json"></label>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
