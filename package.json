@@ -1,9 +1,7 @@
 {
-  "name": "premier-concepts-os",
-  "version": "3.1.0",
+  "name": "premier-concepts-os-all-in-one",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "engines": { "node": "20.x" },
   "scripts": {
     "build": "node build.mjs"
   }

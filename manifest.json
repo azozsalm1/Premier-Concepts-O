@@ -3,7 +3,13 @@
   "short_name": "Premier OS",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07182b",
-  "theme_color": "#07182b",
-  "icons": [{"src":"/icon.svg","sizes":"any","type":"image/svg+xml"}]
+  "background_color": "#0f2740",
+  "theme_color": "#0f2740",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
 }
