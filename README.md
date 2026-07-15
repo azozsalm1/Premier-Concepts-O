@@ -1,21 +1,25 @@
-# Premier Concepts OS — All-in-One Edition
+# Premier Concepts OS — All-in-One v1.1
 
-Single-stage consolidated version:
-- Projects Hub
-- Secure RentCast property lookup
-- Deal Analyzer
-- Detailed Rehab Builder
-- Materials & Vendors
-- Financing
-- Invoices, Change Orders, Daily Logs, Timeline, Punch List
-- Contractors
-- Permits & Inspections
-- CRM
-- Reports & Backup
+## Fix in this version
+- Uses `/api/property-lookup` with an explicit Netlify redirect.
+- The API redirect is placed before the SPA redirect.
+- The browser checks the response type before parsing JSON.
+- Clear error shown when the Netlify Function folder was not uploaded.
 
-Netlify:
+## Required GitHub files
+Confirm this exact nested file exists in GitHub:
+
+`netlify/functions/property-lookup.js`
+
+If GitHub only shows the root files and no `netlify` folder, property lookup cannot work.
+
+## Netlify
 - Build command: `npm run build`
 - Publish directory: `dist`
 - Environment variable: `RENTCAST_API_KEY`
 
-This build has no external npm dependencies and deploys quickly.
+After uploading the files, use **Clear cache and deploy site**.
+
+Test the function directly after deploy:
+
+`https://YOUR-SITE.netlify.app/api/property-lookup?address=17186%20Santa%20Catherine%2C%20Fountain%20Valley%2C%20CA%2092708`

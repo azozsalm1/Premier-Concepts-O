@@ -94,8 +94,19 @@ async function lookup(){
  const p=current();if(!p||!p.address.trim())return alert("Enter full address first.");
  const msg=document.getElementById("lookupMessage");msg.innerHTML='<div class="card">Looking up property...</div>';
  try{
-  const res=await fetch("/.netlify/functions/property-lookup?address="+encodeURIComponent(p.address));
-  const body=await res.json();if(!res.ok)throw new Error(body.error||"Lookup failed");
+  const res=await fetch("/api/property-lookup?address="+encodeURIComponent(p.address),{headers:{"Accept":"application/json"}});
+  const contentType=res.headers.get("content-type")||"";
+  const raw=await res.text();
+  let body=null;
+  if(contentType.includes("application/json")){
+    try{body=raw?JSON.parse(raw):{}}catch{body={error:"The server returned invalid JSON."}}
+  }else{
+    const preview=raw.replace(/\s+/g," ").slice(0,120);
+    throw new Error(res.status===404
+      ? "Property lookup function is not deployed. Confirm netlify/functions/property-lookup.js exists in GitHub, then redeploy."
+      : `Property service returned HTML instead of JSON (${res.status}). ${preview}`);
+  }
+  if(!res.ok)throw new Error(body.error||`Lookup failed (${res.status})`);
   const x=body.property||body;
   Object.assign(p,{address:x.formattedAddress||p.address,city:x.city||p.city,state:x.state||p.state,zip:x.zipCode||p.zip,beds:x.bedrooms??p.beds,baths:x.bathrooms??p.baths,sqft:x.squareFootage??p.sqft,lotSize:x.lotSize??p.lotSize,yearBuilt:x.yearBuilt??p.yearBuilt,propertyType:x.propertyType||p.propertyType,apn:x.apn||p.apn});
   persist();renderAll();msg.innerHTML='<div class="card"><span class="badge good">Property loaded</span></div>';

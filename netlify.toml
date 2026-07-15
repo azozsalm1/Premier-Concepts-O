@@ -7,6 +7,12 @@ functions = "netlify/functions"
 node_bundler = "esbuild"
 
 [[redirects]]
+from = "/api/property-lookup"
+to = "/.netlify/functions/property-lookup"
+status = 200
+force = true
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
