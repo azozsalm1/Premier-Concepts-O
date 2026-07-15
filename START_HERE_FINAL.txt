@@ -1,0 +1,18 @@
+FINAL VERIFIED PACKAGE
+
+Required path included:
+netlify/functions/property-lookup.js
+
+GitHub must show:
+netlify
+  functions
+    property-lookup.js
+
+Netlify settings:
+Build command: npm run build
+Publish directory: dist
+Environment variable: RENTCAST_API_KEY
+
+After upload to GitHub, Netlify deploys automatically.
+Test:
+https://YOUR-SITE.netlify.app/api/property-lookup?address=17186%20Santa%20Catherine%2C%20Fountain%20Valley%2C%20CA%2092708

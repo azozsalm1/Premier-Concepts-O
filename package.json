@@ -1,6 +1,6 @@
 {
-  "name": "premier-concepts-os-all-in-one",
-  "version": "1.0.0",
+  "name": "premier-concepts-os-final-verified",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "build": "node build.mjs"
