@@ -1,51 +1,38 @@
-# Premier Concepts OS — Cloud App Starter
+# Premier Concepts OS — Netlify Fast Build Fix
 
-This is the first real cloud-ready version:
+This edition has **zero npm dependencies**. Netlify does not need to download React, Vite, Supabase, or any other package.
 
-- React + Vite frontend
-- Supabase authentication and cloud project storage
-- Netlify Function for secure RentCast property lookup
-- Projects Hub
-- Deal analysis and maximum-offer calculation
-- Local fallback when Supabase is not configured
+## Replace the old GitHub files
+Upload all files from this folder and overwrite the files with the same names. The important replacements are:
 
-## 1. Create Supabase
+- `package.json`
+- `package-lock.json`
+- `netlify.toml`
+- `.nvmrc`
+- `index.html`
 
-1. Create a free Supabase project.
-2. Open SQL Editor.
-3. Run `supabase/schema.sql`.
-4. Copy Project URL and anon public key.
+Also upload:
+- `app.js`
+- `styles.css`
+- `build.mjs`
+- `manifest.json`
+- `icon.svg`
+- `netlify/functions/property-lookup.js`
 
-## 2. Connect GitHub
+The old `src` folder can remain; it is not used by this version.
 
-1. Create a new GitHub repository.
-2. Upload all project files from this folder.
-3. In Netlify choose Add new project > Import an existing project.
-4. Connect GitHub and choose the repository.
-
-## 3. Netlify environment variables
-
-Add:
-
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-- `RENTCAST_API_KEY`
-
-Delete the RentCast key previously shared in chat and create a new one.
-
-## 4. Deploy
-
-Netlify automatically runs:
-
+## Netlify settings
+- Branch: `main`
 - Build command: `npm run build`
 - Publish directory: `dist`
-- Functions directory: `netlify/functions`
+- Base directory: blank
 
-## Local development
+## Environment variable
+Create a **new** RentCast key. In Netlify add:
 
-```bash
-npm install
-npm run dev
-```
+`RENTCAST_API_KEY = your new key`
 
-RentCast lookup only works through Netlify Functions or Netlify Dev.
+Then trigger **Deploys > Trigger deploy > Clear cache and deploy site**.
+
+## Why the previous build timed out
+The previous lockfile contained download URLs for a private/internal package registry. Netlify could not access it. This lockfile has no package downloads at all.

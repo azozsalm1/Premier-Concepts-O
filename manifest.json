@@ -1,0 +1,9 @@
+{
+  "name": "Premier Concepts OS",
+  "short_name": "Premier OS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07182b",
+  "theme_color": "#07182b",
+  "icons": [{"src":"/icon.svg","sizes":"any","type":"image/svg+xml"}]
+}
