@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d2438">
+<title>Premier Concepts OS Enterprise</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="toast"></div>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="mark">PC</div><div><strong>Premier Concepts</strong><small>Enterprise Flip OS</small></div></div>
+  <button class="nav active" data-view="dashboard">Dashboard</button>
+  <button class="nav" data-view="projects">Projects Hub</button>
+  <button class="nav" data-view="property">Property & Lookup</button>
+  <button class="nav" data-view="deal">Deal Analyzer</button>
+  <button class="nav" data-view="rehab">Rehab Estimator</button>
+  <button class="nav" data-view="materials">Materials</button>
+  <button class="nav" data-view="contractors">Contractors</button>
+  <button class="nav" data-view="schedule">Schedule & Logs</button>
+  <button class="nav" data-view="crm">CRM</button>
+  <button class="nav" data-view="financing">Financing</button>
+  <button class="nav" data-view="documents">Documents</button>
+  <button class="nav" data-view="reports">Reports</button>
+  <button class="nav" data-view="settings">Settings & Cloud</button>
+</aside>
+<main class="main">
+<header class="topbar">
+ <div><h1 id="pageTitle">Dashboard</h1><p id="activeProjectLabel">No active project</p></div>
+ <div class="actions"><button class="btn ghost" id="darkBtn">Dark</button><button class="btn ghost" id="saveBtn">Save</button><button class="btn primary" id="newProjectBtn">+ New Project</button></div>
+</header>
+
+<section id="dashboard" class="view active">
+ <div id="dashboardKpis" class="kpis"></div>
+ <div class="two">
+  <div class="card"><h2>Portfolio Pipeline</h2><div id="pipelineTable"></div></div>
+  <div class="card"><h2>Current Deal Health</h2><div id="dealHealth"></div></div>
+ </div>
+ <div class="card"><h2>Upcoming Tasks</h2><div id="upcomingTasks"></div></div>
+</section>
+
+<section id="projects" class="view">
+ <div class="toolbar"><input id="projectSearch" placeholder="Search name, address, city"><select id="projectFilter"><option value="">All statuses</option><option>Lead</option><option>Analyzing</option><option>Offer Sent</option><option>Under Contract</option><option>Construction</option><option>Listed</option><option>Sold</option><option>On Hold</option></select><button class="btn ghost" id="duplicateProjectBtn">Duplicate Active</button></div>
+ <div id="projectCards" class="cards"></div>
+</section>
+
+<section id="property" class="view">
+ <div class="card">
+  <div class="section-head"><div><h2>Property Record</h2><p>Enter full address and retrieve available public-record data.</p></div><button class="btn primary" id="lookupPropertyBtn">Get Property Details</button></div>
+  <div id="lookupStatus"></div>
+  <div class="form-grid">
+   <label>Project Name<input data-p="name"></label><label>Status<select data-p="status"><option>Lead</option><option>Analyzing</option><option>Offer Sent</option><option>Under Contract</option><option>Construction</option><option>Listed</option><option>Sold</option><option>On Hold</option></select></label>
+   <label class="span2">Address<input data-p="address"></label><label>City<input data-p="city"></label><label>State<input data-p="state"></label><label>ZIP<input data-p="zip"></label>
+   <label>Bedrooms<input type="number" step=".5" data-p="beds"></label><label>Bathrooms<input type="number" step=".5" data-p="baths"></label><label>Living Sq Ft<input type="number" data-p="sqft"></label><label>Lot Sq Ft<input type="number" data-p="lot"></label>
+   <label>Year Built<input type="number" data-p="year"></label><label>Property Type<input data-p="propertyType"></label><label>APN<input data-p="apn"></label><label>Owner<input data-p="owner"></label>
+   <label>Last Sale Price<input type="number" data-p="lastSalePrice"></label><label>Last Sale Date<input type="date" data-p="lastSaleDate"></label><label>Annual Tax<input type="number" data-p="annualTax"></label><label>Rent Estimate<input type="number" data-p="rentEstimate"></label>
+   <label>Purchase Price<input type="number" data-p="purchase"></label><label>ARV / Sale Price<input type="number" data-p="arv"></label><label>Holding Months<input type="number" data-p="months"></label><label>Confidence<select data-p="confidence"><option>Needs Review</option><option>Partially Verified</option><option>Verified</option></select></label>
+  </div>
+ </div>
+ <div class="two"><div class="card"><h2>Sales History</h2><div id="salesHistory"></div></div><div class="card"><h2>Tax History</h2><div id="taxHistory"></div></div></div>
+ <div class="card"><h2>Comparable Sales</h2><div class="toolbar"><button class="btn ghost" id="addCompBtn">+ Add Comp</button></div><div id="compsTable"></div></div>
+</section>
+
+<section id="deal" class="view">
+ <div id="dealKpis" class="kpis"></div>
+ <div class="two"><div class="card"><h2>Offer Range</h2><div id="offerTable"></div></div><div class="card"><h2>Sensitivity Analysis</h2><div id="sensitivityTable"></div></div></div>
+ <div class="card"><h2>Cost Formula Audit</h2><div id="formulaAudit"></div></div>
+</section>
+
+<section id="rehab" class="view">
+ <div class="toolbar"><button class="btn ghost" id="addCategoryBtn">+ Category</button><button class="btn ghost" id="resetTemplateBtn">Reset Standard Template</button><button class="btn ghost" id="saveTemplateBtn">Save Template</button><select id="templateSelect"></select><button class="btn ghost" id="applyTemplateBtn">Apply Template</button></div>
+ <div id="rehabCategories"></div>
+</section>
+
+<section id="materials" class="view">
+ <div class="toolbar"><input id="materialSearch" placeholder="Search material, supplier, SKU"><select id="materialStatus"><option value="">All purchase statuses</option><option>Not Ordered</option><option>Ordered</option><option>Delivered</option><option>Backordered</option></select><button class="btn ghost" id="addMaterialBtn">+ Material</button><button class="btn ghost" id="addVendorBtn">+ Supplier</button></div>
+ <div class="card"><h2>Material Purchasing</h2><div id="materialsTable"></div></div>
+ <div class="card"><h2>Suppliers</h2><div id="suppliersTable"></div></div>
+</section>
+
+<section id="contractors" class="view"><div class="toolbar"><button class="btn ghost" id="addContractorBtn">+ Contractor</button></div><div class="card"><div id="contractorsTable"></div></div></section>
+
+<section id="schedule" class="view">
+ <div class="tabs"><button class="tab active" data-schedule="tasks">Timeline</button><button class="tab" data-schedule="calendar">Calendar</button><button class="tab" data-schedule="logs">Daily Logs</button><button class="tab" data-schedule="punch">Punch List</button></div>
+ <div class="toolbar"><button class="btn ghost" id="addScheduleItemBtn">+ Add Item</button></div><div id="scheduleContent"></div>
+</section>
+
+<section id="crm" class="view"><div class="toolbar"><input id="crmSearch" placeholder="Search contacts"><select id="crmType"><option value="">All Types</option><option>Buyer</option><option>Agent</option><option>Wholesaler</option><option>Lender</option><option>Contractor</option><option>Inspector</option><option>Escrow</option><option>Title</option><option>Seller</option></select><button class="btn ghost" id="addContactBtn">+ Contact</button></div><div class="card" id="crmTable"></div></section>
+
+<section id="financing" class="view">
+ <div class="card"><h2>Default Financing & Cost Settings</h2><div class="form-grid">
+  <label>Purchase LTV %<input type="number" step=".1" data-s="purchaseLtv"></label><label>Rehab Funded %<input type="number" step=".1" data-s="rehabFunding"></label><label>Interest %<input type="number" step=".1" data-s="interest"></label><label>Points %<input type="number" step=".1" data-s="points"></label>
+  <label>Lender Fees<input type="number" data-s="lenderFees"></label><label>Monthly Holding<input type="number" data-s="monthlyHolding"></label><label>Buying Closing %<input type="number" step=".1" data-s="buyClosing"></label><label>Selling Costs %<input type="number" step=".1" data-s="selling"></label>
+  <label>Agent / Acquisition %<input type="number" step=".1" data-s="agent"></label><label>Wholesale Fee<input type="number" data-s="wholesale"></label><label>Contingency %<input type="number" step=".1" data-s="contingency"></label><label>Minimum Profit<input type="number" data-s="minProfit"></label>
+  <label>Capital Gains Estimate %<input type="number" step=".1" data-s="capitalGains"></label><label>Insurance / Month<input type="number" data-s="insuranceMonthly"></label><label>Utilities / Month<input type="number" data-s="utilitiesMonthly"></label><label>Property Tax / Month<input type="number" data-s="taxMonthly"></label>
+ </div></div>
+ <div class="card"><h2>Loan Comparison</h2><div class="toolbar"><button class="btn ghost" id="addLoanBtn">+ Loan Option</button></div><div id="loanTable"></div></div>
+</section>
+
+<section id="documents" class="view">
+ <div class="tabs"><button class="tab active" data-doc="invoices">Invoices</button><button class="tab" data-doc="estimates">Estimates</button><button class="tab" data-doc="contracts">Contracts</button><button class="tab" data-doc="changes">Change Orders</button><button class="tab" data-doc="purchaseAgreements">Purchase Agreements</button><button class="tab" data-doc="scopes">Scopes</button><button class="tab" data-doc="inspections">Inspection Reports</button></div>
+ <div class="toolbar"><button class="btn ghost" id="addDocumentBtn">+ Document</button></div><div class="card" id="documentsTable"></div>
+</section>
+
+<section id="reports" class="view">
+ <div id="reportKpis" class="kpis"></div>
+ <div class="toolbar"><button class="btn primary" id="printReportBtn">Print / PDF</button><button class="btn ghost" id="exportCsvBtn">Export Project CSV</button><button class="btn ghost" id="exportBackupBtn">Export Full Backup</button><label class="btn ghost file">Import Backup<input id="importBackup" type="file" accept=".json"></label></div>
+ <div class="card"><h2>Budget Report</h2><div id="budgetReport"></div></div><div class="card"><h2>Vendor Report</h2><div id="vendorReport"></div></div><div class="card"><h2>Timeline Report</h2><div id="timelineReport"></div></div>
+</section>
+
+<section id="settings" class="view">
+ <div class="card"><h2>Company Settings</h2><div class="form-grid"><label>Company Name<input data-company="name"></label><label>Phone<input data-company="phone"></label><label>Email<input data-company="email"></label><label>License<input data-company="license"></label><label class="span2">Address<input data-company="address"></label><label>Tax Rate %<input type="number" step=".1" data-company="taxRate"></label><label>Markup %<input type="number" step=".1" data-company="markup"></label></div></div>
+ <div class="card"><h2>Cloud Configuration</h2><p class="muted">Local mode is fully functional. RentCast works through the included Netlify Function. Supabase schema is included for cloud migration.</p><div id="cloudStatus"></div></div>
+</section>
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+import fs from 'fs';import path from 'path';const o='dist';fs.rmSync(o,{recursive:true,force:true});fs.mkdirSync(o);for(const f of ['index.html','styles.css','app.js','manifest.json','icon.svg'])fs.copyFileSync(f,path.join(o,f));
